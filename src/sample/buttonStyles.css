@@ -1,0 +1,15 @@
+.choice-box{
+    -fx-font: 12 Verdana;
+    -fx-mark-color: #006ee6;
+}
+.choice-box > .label{
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+.label{
+    -fx-text-fill: black;
+    -fx-font: 12 Verdana;
+
+}
+
