@@ -71,9 +71,10 @@ public class Controller {
                 "Hergestellt von Sorin Lazar für FCP.VCE, August 2019\n" +
                         "Vorschläge und Anfragen an soso.laz@gmail.com\n"+ "\n"+
                         "Übergreifungs- u. Verankerungslängen nach EN 1992\n");
-//        alert.showAndWait();
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == openFolder) {
+
+
+        if (result.isPresent()&&result.get() == openFolder) {
             String inputPdf = "tabelle.pdf";
             Path tempOutput;
 
@@ -81,7 +82,9 @@ public class Controller {
                 tempOutput = Files.createTempFile("tabelleTemp", ".pdf");
                 tempOutput.toFile().deleteOnExit();
                 try (InputStream is = Controller.class.getClassLoader().getResourceAsStream(inputPdf)) {
-                    Files.copy(is, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+                    if (is != null) {
+                        Files.copy(is, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+                    }
                 }
                 Desktop.getDesktop().open(tempOutput.toFile());
             }   catch (IOException e){
