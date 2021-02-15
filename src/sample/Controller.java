@@ -2,20 +2,22 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import sample.datamodel.*;
+import sample.datamodel.ResourceData;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Optional;
 
@@ -37,8 +39,6 @@ public class Controller {
     private TextField overlapTextField;
     @FXML
     private ImageView imageView;
-    @FXML
-    private Image fcpLogo;
 
 
     public void initialize() {
@@ -48,10 +48,8 @@ public class Controller {
         diameter.setItems(ResourceData.getInstance().getDiameterList());
         diameter.getSelectionModel().selectFirst();
 
-        fcpLogo = new Image("FCP.jpg");
+        Image fcpLogo = new Image("FCP.jpg");
         imageView.setImage(fcpLogo);
-
-
     }
 
 
@@ -94,18 +92,6 @@ public class Controller {
                 error.setContentText("Could not create file");
                 error.showAndWait();
             }
-
-
-
-//            try{
-//                Desktop.getDesktop().open(tabellePath.toFile());
-//            }catch (Exception ioe){
-//                Alert error = new Alert(Alert.AlertType.ERROR);
-//                error.setTitle("Error");
-//                error.setHeaderText(null);
-//                error.setContentText("File not found");
-//                error.showAndWait();
-//            }
         }
     }
 
